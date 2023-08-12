@@ -2,5 +2,9 @@
     <string name="app_name">RecyclerView</string>
     <string name="Name">Ahamed</string>
     <string name="Number">987654321</string>
+    <string name="actionbtn">Add</string>
+    <string name="edtname">Enter Your Name  to add</string>
+    <string name="edtnumber">Enter Your Number to add</string>
+    <string name="Head">Add Your Contact</string>
 
 </resources>
