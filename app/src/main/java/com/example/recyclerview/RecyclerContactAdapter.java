@@ -75,6 +75,33 @@ public class RecyclerContactAdapter extends RecyclerView.Adapter<RecyclerContact
                     }
                 });
                 dialog.show();
+
+                holder.del.setOnLongClickListener(new View.OnLongClickListener() {
+                    @Override
+                    public boolean onLongClick(View v) {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(context)
+                                .setTitle("Delete Contact")
+                                .setMessage("Are you Sure want to delete")
+                                .setIcon(R.drawable.baseline_folder_delete_24)
+                                .setPositiveButton("yes", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        arrContacts.remove(position);
+                                        notifyItemRemoved(position);
+                                    }
+                                }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+
+                                    }
+                                });
+                        builder.show();
+
+                        return true;
+                    }
+                });
+
+
             }
         });
 
@@ -90,12 +117,15 @@ public class RecyclerContactAdapter extends RecyclerView.Adapter<RecyclerContact
         TextView txtName,txtNumer;
         ImageView img;
         LinearLayout llView;
+        LinearLayout del;
         public ViewHolder(View itemView) {
             super(itemView);
             txtName = itemView.findViewById(R.id.txtname);
             txtNumer = itemView.findViewById(R.id.txtNumber);
             img = itemView.findViewById(R.id.img);
             llView = itemView.findViewById(R.id.llView);
+            del = itemView.findViewById(R.id.del);
+
 
         }
     }
