@@ -64,17 +64,6 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-//                        if(!edtName.getText().toString().equals("")){
-//                            name = edtName.getText().toString();
-//                        }else{
-//                            Toast.makeText(MainActivity.this, "Please Enter Contact Name", Toast.LENGTH_SHORT).show();
-//                        }
-//                        if(!edtNumber.getText().toString().equals("")){
-//                            number = edtNumber.getText().toString();
-//                        }else{
-//                            Toast.makeText(MainActivity.this, "Please Enter Your Contact Number", Toast.LENGTH_SHORT).show();
-//                        }
-
 
 
                     }
