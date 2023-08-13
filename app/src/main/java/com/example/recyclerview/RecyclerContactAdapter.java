@@ -1,11 +1,18 @@
 package com.example.recyclerview;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -30,10 +37,48 @@ public class RecyclerContactAdapter extends RecyclerView.Adapter<RecyclerContact
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder( ViewHolder holder, int position) {
         holder.img.setImageResource(arrContacts.get(position).img);
         holder.txtName.setText(arrContacts.get(position).name);
         holder.txtNumer.setText(arrContacts.get(position).number);
+
+        holder.llView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Dialog dialog = new Dialog(context);
+                dialog.setContentView(R.layout.add_update_layout);
+
+                EditText edtName = dialog.findViewById(R.id.edtName);
+                EditText edtNumber = dialog.findViewById(R.id.edtNumber);
+                Button acbtn = dialog.findViewById(R.id.acbtn);
+
+                TextView txtTitle = dialog.findViewById(R.id.head);
+
+                txtTitle.setText("Update Contact");
+                acbtn.setText("Update");
+
+                acbtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String name = "",number = "";
+                        if(!edtName.getText().toString().equals("") && !edtNumber.getText().toString().equals("")){
+                            name = edtName.getText().toString();
+                            number = edtNumber.getText().toString();
+
+                            arrContacts.set(position,new Contact_Model(name,number));
+                            notifyItemChanged(position);
+                            dialog.dismiss();
+                        }
+                        else {
+                            Toast.makeText(context, "Please enter to update", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+                dialog.show();
+            }
+        });
+
+
     }
 
     @Override
@@ -44,11 +89,13 @@ public class RecyclerContactAdapter extends RecyclerView.Adapter<RecyclerContact
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView txtName,txtNumer;
         ImageView img;
-        public ViewHolder(@NonNull View itemView) {
+        LinearLayout llView;
+        public ViewHolder(View itemView) {
             super(itemView);
             txtName = itemView.findViewById(R.id.txtname);
             txtNumer = itemView.findViewById(R.id.txtNumber);
             img = itemView.findViewById(R.id.img);
+            llView = itemView.findViewById(R.id.llView);
 
         }
     }

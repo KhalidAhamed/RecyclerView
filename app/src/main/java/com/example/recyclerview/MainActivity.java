@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
                 EditText edtNumber = dialog.findViewById(R.id.edtNumber);
                 Button btnAction = dialog.findViewById(R.id.acbtn);
 
+
                 btnAction.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -56,10 +57,24 @@ public class MainActivity extends AppCompatActivity {
                             recyclerView.scrollToPosition(arrContacts.size()-1);
 
                             dialog.dismiss();
+
+
                         }
-                        else{
-                            Toast.makeText(MainActivity.this, "Fill to add", Toast.LENGTH_SHORT).show();
+                        else {
+                            Toast.makeText(MainActivity.this, "Please Fill both to Add", Toast.LENGTH_SHORT).show();
                         }
+
+
+//                        if(!edtName.getText().toString().equals("")){
+//                            name = edtName.getText().toString();
+//                        }
+//                        else{
+//                            Toast.makeText(MainActivity.this, "Fill to add", Toast.LENGTH_SHORT).show();
+//                        }
+//                        if(!edtNumber.getText().toString().equals("")){
+//                            number = edtNumber.getText().toString();
+//                        }
+
 
 
 
