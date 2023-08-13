@@ -7,6 +7,8 @@ import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -21,6 +23,7 @@ import java.util.ArrayList;
 
 public class RecyclerContactAdapter extends RecyclerView.Adapter<RecyclerContactAdapter.ViewHolder> {
     Context context;
+
     ArrayList<Contact_Model> arrContacts;
     public RecyclerContactAdapter(Context context,ArrayList<Contact_Model> arrContacts){
         this.context = context;
@@ -38,6 +41,8 @@ public class RecyclerContactAdapter extends RecyclerView.Adapter<RecyclerContact
 
     @Override
     public void onBindViewHolder( ViewHolder holder, int position) {
+
+        setAnimation(holder.itemView,position);
         holder.img.setImageResource(arrContacts.get(position).img);
         holder.txtName.setText(arrContacts.get(position).name);
         holder.txtNumer.setText(arrContacts.get(position).number);
@@ -128,5 +133,11 @@ public class RecyclerContactAdapter extends RecyclerView.Adapter<RecyclerContact
 
 
         }
+    }
+    private void setAnimation(View viewAnimate, int position){
+            Animation slideIn = AnimationUtils.loadAnimation(context, android.R.anim.slide_in_left);
+            viewAnimate.startAnimation(slideIn);
+
+
     }
 }
